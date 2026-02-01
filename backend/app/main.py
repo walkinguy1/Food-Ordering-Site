@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.database import engine, Base
+from app.api.v1 import auth
+
+# Create tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Food Ordering API")
 
-# Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -12,10 +16,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
+
 @app.get("/")
 def read_root():
     return {"message": "Food Ordering API is running!"}
-
-@app.get("/api/health")
-def health_check():
-    return {"status": "healthy"}
