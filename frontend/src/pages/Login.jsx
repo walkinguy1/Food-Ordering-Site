@@ -18,7 +18,11 @@ export default function Login() {
       await authService.login(email, password);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.detail || 'Login failed. Please try again.');
+      if (err.response?.status === 401) {
+        setError('Invalid email or password. Please try again.');
+      } else {
+        setError('Login failed. Please check your connection and try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -45,6 +49,7 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoFocus
             />
           </div>
 

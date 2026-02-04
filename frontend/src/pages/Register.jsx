@@ -6,10 +6,12 @@ export default function Register() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
     full_name: '',
     phone: '',
   });
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -23,11 +25,30 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
+
+    // Validate passwords match
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    // Validate password length
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await authService.register(formData);
-      navigate('/login');
+      const { confirmPassword: _confirmPassword, ...dataToSend } = formData;
+      await authService.register(dataToSend);
+      
+      setSuccess('Registration successful! Redirecting to login...');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (err) {
       setError(err.response?.data?.detail || 'Registration failed. Please try again.');
     } finally {
@@ -46,9 +67,15 @@ export default function Register() {
           </div>
         )}
 
+        {success && (
+          <div className="alert alert-success">
+            {success}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="form">
           <div className="form-group">
-            <label className="form-label">Full Name</label>
+            <label className="form-label">Full Name *</label>
             <input
               className="form-input"
               type="text"
@@ -61,7 +88,7 @@ export default function Register() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">Email Address</label>
+            <label className="form-label">Email Address *</label>
             <input
               className="form-input"
               type="email"
@@ -79,20 +106,34 @@ export default function Register() {
               className="form-input"
               type="tel"
               name="phone"
-              placeholder="Enter your phone number"
+              placeholder="Enter your phone number (optional)"
               value={formData.phone}
               onChange={handleChange}
             />
           </div>
 
           <div className="form-group">
-            <label className="form-label">Password</label>
+            <label className="form-label">Password *</label>
             <input
               className="form-input"
               type="password"
               name="password"
-              placeholder="Enter your password"
+              placeholder="At least 8 characters"
               value={formData.password}
+              onChange={handleChange}
+              required
+              minLength={8}
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">Confirm Password *</label>
+            <input
+              className="form-input"
+              type="password"
+              name="confirmPassword"
+              placeholder="Re-enter your password"
+              value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
@@ -103,7 +144,7 @@ export default function Register() {
             className="btn btn-primary btn-full"
             disabled={loading}
           >
-            {loading ? 'Registering...' : 'Register'}
+            {loading ? 'Creating account...' : 'Register'}
           </button>
 
           <p className="text-center text-muted">
