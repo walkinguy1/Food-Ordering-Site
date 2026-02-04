@@ -27,6 +27,9 @@ export default function Navbar() {
               <Link to="/profile" className="navbar-link">
                 Profile
               </Link>
+              <Link to="/restaurants" className="navbar-link">
+                Restaurants
+              </Link>
               <span className="navbar-user">
                 👤 {user?.full_name || user?.email}
               </span>
@@ -41,6 +44,9 @@ export default function Navbar() {
               </Link>
               <Link to="/register" className="navbar-link">
                 Register
+              </Link>
+              <Link to="/restaurants" className="navbar-link">
+                Restaurants
               </Link>
             </>
           )}
