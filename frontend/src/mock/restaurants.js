@@ -3,7 +3,7 @@ export const restaurants = [
     id: 1,
     name: "Pizza Hub",
     rating: 4.5,
-    description: "Best pizza in town"
+    description: "Mamma Mia"
   },
   {
     id: 2,

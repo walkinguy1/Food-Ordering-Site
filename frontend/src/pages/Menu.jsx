@@ -1,13 +1,15 @@
 import { useParams } from "react-router-dom";
 import { menuItems } from "../mock/menu";
 import MenuItemCard from "../components/MenuItemCard";
+import { useCart } from "../context/useCart";
 
 export default function Menu() {
   const { id } = useParams();
   const items = menuItems[id] || [];
+  const { addToCart } = useCart();
 
   const handleAddToCart = (item) => {
-    console.log("Added to cart:", item);
+    addToCart(Number(id), item);
   };
 
   return (

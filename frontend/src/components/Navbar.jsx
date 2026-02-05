@@ -1,15 +1,22 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
+import { useCart } from "../context/useCart";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const isAuthenticated = authService.isAuthenticated();
   const user = authService.getUser();
+  const { cart } = useCart();
 
   const handleLogout = () => {
     authService.logout();
     navigate('/login');
   };
+
+  const totalItems = cart.items.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   return (
     <nav className="navbar">
@@ -29,6 +36,9 @@ export default function Navbar() {
               </Link>
               <Link to="/restaurants" className="navbar-link">
                 Restaurants
+              </Link>
+              <Link to="/cart" className="navbar-link">
+                  Cart ({totalItems})
               </Link>
               <span className="navbar-user">
                 👤 {user?.full_name || user?.email}
