@@ -31,14 +31,17 @@ export default function Navbar() {
               <Link to="/" className="navbar-link">
                 Home
               </Link>
-              <Link to="/profile" className="navbar-link">
-                Profile
-              </Link>
               <Link to="/restaurants" className="navbar-link">
                 Restaurants
               </Link>
+              <Link to="/orders" className="navbar-link">
+                My Orders
+              </Link>
               <Link to="/cart" className="navbar-link">
                   Cart ({totalItems})
+              </Link>
+              <Link to="/profile" className="navbar-link">
+                Profile
               </Link>
               <span className="navbar-user">
                 👤 {user?.full_name || user?.email}
