@@ -1,13 +1,34 @@
 from app.core.database import SessionLocal
 from app.models.restaurant import Restaurant
 from app.models.menu_item import MenuItem
+from app.models.user import User, UserRole
+from app.models.order import Order, OrderItem  # Add these
+from app.core.security import get_password_hash
 
 def seed_restaurants():
     db = SessionLocal()
     
-    # Clear existing data
-    db.query(MenuItem).delete()
-    db.query(Restaurant).delete()
+    # Clear existing data in correct order (delete children before parents)
+    db.query(OrderItem).delete()  # Delete order items first
+    db.query(Order).delete()      # Then orders
+    db.query(MenuItem).delete()   # Then menu items
+    db.query(Restaurant).delete() # Finally restaurants
+    
+    # Create admin user if doesn't exist
+    admin = db.query(User).filter(User.email == "admin@foodapp.com").first()
+    if not admin:
+        admin = User(
+            email="admin@foodapp.com",
+            hashed_password=get_password_hash("admin123"),
+            full_name="Admin User",
+            role=UserRole.ADMIN
+        )
+        db.add(admin)
+        db.commit()
+        print("✅ Created admin user: admin@foodapp.com / admin123")
+    else:
+        print("ℹ️  Admin user already exists")
+    
     db.commit()
     
     # Create restaurants

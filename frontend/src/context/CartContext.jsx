@@ -16,13 +16,13 @@ export default function CartProvider({ children }) {
 
   const addToCart = (restaurantId, item) => {
     setCart((prev) => {
-      if (!prev.restaurantId) {
+      if (!prev.restaurantId || prev.items.length === 0) {
         return {
           restaurantId,
           items: [{ ...item, quantity: 1 }]
         };
       }
-
+      // If trying to add from a different restaurant, show alert and do not change cart
       if (prev.restaurantId !== restaurantId) {
         alert("You can only order from one restaurant at a time.");
         return prev;
@@ -49,14 +49,24 @@ export default function CartProvider({ children }) {
   };
 
   const removeFromCart = (itemId) => {
-    setCart((prev) => ({
-      ...prev,
-      items: prev.items.filter(item => item.id !== itemId)
-    }));
+    setCart((prev) => {
+      const newItems = prev.items.filter(item => item.id !== itemId);
+      
+      // If no items left, reset restaurant too
+      if (newItems.length === 0) {
+        return { restaurantId: null, items: [] };
+      }
+      
+      return {
+        ...prev,
+        items: newItems
+      };
+    });
   };
-
+  
   const clearCart = () => {
     setCart({ restaurantId: null, items: [] });
+    localStorage.removeItem('cart');  //clears local storage then the cart is clean hence removing the bug of alert showing up when it shouldn't 
   };
 
   return (

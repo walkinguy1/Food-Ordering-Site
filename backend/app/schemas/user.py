@@ -12,6 +12,7 @@ class UserResponse(BaseModel):
     id: int
     email: str
     full_name: Optional[str]
+    phone: Optional[str]
     role: str
     created_at: datetime
     
