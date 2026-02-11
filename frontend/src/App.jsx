@@ -15,6 +15,7 @@ import RestaurantManagement from "./pages/admin/RestaurantManagement";
 import OrderManagement from "./pages/admin/OrderManagement";
 import UserManagement from "./pages/admin/UserManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MenuManagement from "./pages/admin/MenuManagement";
 import "./App.css";
 
 function App() {
@@ -67,6 +68,14 @@ function App() {
           element={
             <ProtectedRoute>
               <RestaurantManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/menu"
+          element={
+            <ProtectedRoute>
+              <MenuManagement />
             </ProtectedRoute>
           }
         />

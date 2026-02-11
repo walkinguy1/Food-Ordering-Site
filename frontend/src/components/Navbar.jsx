@@ -46,6 +46,9 @@ export default function Navbar() {
                   <Link to="/admin/restaurants" className="navbar-link navbar-link-admin">
                     Restaurants
                   </Link>
+                  <Link to="/admin/menu" className="navbar-link navbar-link-admin">
+                    Menu
+                  </Link>
                   <Link to="/admin/orders" className="navbar-link navbar-link-admin">
                     Orders
                   </Link>
