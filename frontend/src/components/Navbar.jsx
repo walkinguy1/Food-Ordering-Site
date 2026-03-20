@@ -1,11 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
+import { useCart } from '../context/useCart';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const isAuthenticated = authService.isAuthenticated();
   const user = authService.getUser();
   const isAdmin = user?.role === 'admin';
+  const { cart } = useCart();
+
+  const cartCount = cart.items.reduce((sum, i) => sum + i.quantity, 0);
 
   const handleLogout = () => {
     authService.logout();
@@ -16,7 +20,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          🍕 Food Ordering
+          🍕 FoodieExpress
         </Link>
 
         <div className="navbar-menu">
@@ -33,8 +37,11 @@ export default function Navbar() {
                   <Link to="/orders" className="navbar-link">
                     My Orders
                   </Link>
-                  <Link to="/cart" className="navbar-link">
+                  <Link to="/cart" className="navbar-link navbar-cart-link">
                     Cart
+                    {cartCount > 0 && (
+                      <span className="cart-badge">{cartCount}</span>
+                    )}
                   </Link>
                 </>
               )}
@@ -76,8 +83,8 @@ export default function Navbar() {
               <Link to="/login" className="navbar-link">
                 Login
               </Link>
-              <Link to="/register" className="navbar-link">
-                Register
+              <Link to="/register" className="btn btn-primary btn-sm">
+                Sign Up
               </Link>
             </>
           )}
