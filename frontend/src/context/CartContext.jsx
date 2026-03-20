@@ -63,6 +63,19 @@ export default function CartProvider({ children }) {
       };
     });
   };
+
+  const updateQuantity = (itemId, quantity) => {
+    if (quantity < 1) {
+      removeFromCart(itemId);
+      return;
+    }
+    setCart((prev) => ({
+      ...prev,
+      items: prev.items.map((i) =>
+        i.id === itemId ? { ...i, quantity } : i
+      ),
+    }));
+  };
   
   const clearCart = () => {
     setCart({ restaurantId: null, items: [] });
@@ -71,7 +84,7 @@ export default function CartProvider({ children }) {
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
+      value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}
     >
       {children}
     </CartContext.Provider>
