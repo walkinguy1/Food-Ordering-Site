@@ -526,7 +526,7 @@ Error: Stripe secret key not found
 
 Solution:
 1. Add STRIPE_SECRET_KEY to .env
-2. Use test key: your-stripe-secret-test-key
+2. Use a Stripe test key from https://dashboard.stripe.com/test/apikeys
 3. Restart service
 ```
 
