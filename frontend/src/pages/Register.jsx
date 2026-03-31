@@ -50,7 +50,11 @@ export default function Register() {
         navigate('/login');
       }, 2000);
     } catch (err) {
-      setError(err.response?.data?.detail || 'Registration failed. Please try again.');
+      setError(
+        err.response?.data?.message ||
+          err.response?.data?.detail ||
+          'Registration failed. Please try again.'
+      );
     } finally {
       setLoading(false);
     }

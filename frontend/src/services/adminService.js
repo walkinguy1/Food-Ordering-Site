@@ -25,34 +25,34 @@ export const adminService = {
 
   // Menu Item Management
   async createMenuItem(menuItemData) {
-    const response = await api.post('/api/v1/admin/menu-items', menuItemData);
+    const response = await api.post('/api/v1/inventory', menuItemData);
     return response.data;
   },
 
   async updateMenuItem(id, menuItemData) {
-    const response = await api.put(`/api/v1/admin/menu-items/${id}`, menuItemData);
+    const response = await api.put(`/api/v1/inventory/${id}`, menuItemData);
     return response.data;
   },
 
   async deleteMenuItem(id) {
-    const response = await api.delete(`/api/v1/admin/menu-items/${id}`);
+    const response = await api.delete(`/api/v1/inventory/${id}`);
     return response.data;
   },
 
   // Order Management
   async getAllOrders() {
-    const response = await api.get('/api/v1/admin/orders');
+    const response = await api.get('/api/v1/orders');
     return response.data;
   },
 
   async updateOrderStatus(orderId, status) {
-    const response = await api.put(`/api/v1/admin/orders/${orderId}/status`, { status });
+    const response = await api.put(`/api/v1/orders/${orderId}/status`, { status });
     return response.data;
   },
 
   // User Management
   async getAllUsers() {
-    const response = await api.get('/api/v1/admin/users');
+    const response = await api.get('/api/v1/auth/users'); // assume auth service handles users list
     return response.data;
   }
 };

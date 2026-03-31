@@ -1,0 +1,9 @@
+{
+  "name": "food-ordering-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev:up": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-up.ps1",
+    "dev:down": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-down.ps1"
+  }
+}

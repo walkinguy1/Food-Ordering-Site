@@ -107,6 +107,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── AI Recommendations ── */}
+      <section className="recommendations-section" style={{ padding: '4rem 0', backgroundColor: '#fff9f9' }}>
+        <div className="container-wide">
+          <h2 className="features-heading" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span role="img" aria-label="sparkles">✨</span>
+            Trending Near You
+          </h2>
+          <p className="features-subheading">
+            AI-powered recommendations based on popular orders and time of day.
+          </p>
+          <div className="features-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+            {/* Stub Data */}
+            <div className="feature-card" style={{ borderTop: '4px solid #ff4757', textAlign: 'left', padding: '1.5rem' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🔥</div>
+              <h3 style={{ margin: '0 0 0.5rem 0' }}>Spicy Chicken Momo</h3>
+              <p style={{ margin: '0 0 1rem 0', color: '#666' }}>Kathmandu Momo Center</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 'bold' }}>Rs. 250</span>
+                <Link to="/restaurants/1" className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>Order Now</Link>
+              </div>
+            </div>
+
+            <div className="feature-card" style={{ borderTop: '4px solid #ff4757', textAlign: 'left', padding: '1.5rem' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🍕</div>
+              <h3 style={{ margin: '0 0 0.5rem 0' }}>Margherita Pizza</h3>
+              <p style={{ margin: '0 0 1rem 0', color: '#666' }}>Fire And Ice Pizzeria</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 'bold' }}>Rs. 850</span>
+                <Link to="/restaurants/2" className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>Order Now</Link>
+              </div>
+            </div>
+
+            <div className="feature-card" style={{ borderTop: '4px solid #ff4757', textAlign: 'left', padding: '1.5rem' }}>
+              <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>🍜</div>
+              <h3 style={{ margin: '0 0 0.5rem 0' }}>Pork Thukpa</h3>
+              <p style={{ margin: '0 0 1rem 0', color: '#666' }}>Himalayan Kitchen</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontWeight: 'bold' }}>Rs. 320</span>
+                <Link to="/restaurants/3" className="btn btn-primary" style={{ padding: '0.5rem 1rem' }}>Order Now</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Features ── */}
       <section className="features-section">
         <div className="container-wide">

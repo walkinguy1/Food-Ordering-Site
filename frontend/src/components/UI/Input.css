@@ -1,0 +1,9 @@
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.required {
+  color: var(--color-danger);
+  margin-left: var(--space-xs);
+}

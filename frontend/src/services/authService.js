@@ -2,27 +2,33 @@ import api from './api';
 
 export const authService = {
   async register(userData) {
-    const response = await api.post('/api/v1/auth/register', userData);
+    // Frontend register form uses full_name/phone; auth service expects name/phoneNumber.
+    const payload = {
+      name: userData.full_name || userData.name,
+      email: userData.email,
+      password: userData.password,
+      phoneNumber: userData.phone || userData.phoneNumber,
+      role: userData.role || 'customer'
+    };
+
+    const response = await api.post('/api/v1/auth/register', payload);
     return response.data;
   },
 
   async login(email, password) {
-    const formData = new FormData();
-    formData.append('username', email);
-    formData.append('password', password);
+    const payload = { email, password };
     
-    const response = await api.post('/api/v1/auth/login', formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
+    const response = await api.post('/api/v1/auth/login', payload);
     
-    if (response.data.access_token) {
-      localStorage.setItem('token', response.data.access_token);
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
       // Store user info
-      if (response.data.user) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-      }
+      localStorage.setItem('user', JSON.stringify({
+        _id: response.data._id,
+        name: response.data.name,
+        email: response.data.email,
+        role: response.data.role
+      }));
     }
     
     return response.data;

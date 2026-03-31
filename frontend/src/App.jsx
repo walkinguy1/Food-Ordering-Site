@@ -10,12 +10,13 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Orders from "./pages/Orders";
-import AdminDashboard from "./pages/admin/AdminDashboard";  // Add these
+import AdminDashboard from "./pages/admin/AdminDashboard";
 import RestaurantManagement from "./pages/admin/RestaurantManagement";
 import OrderManagement from "./pages/admin/OrderManagement";
 import UserManagement from "./pages/admin/UserManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MenuManagement from "./pages/admin/MenuManagement";
+import DeliveryAgentDashboard from "./pages/agent/DeliveryAgentDashboard";
 import "./App.css";
 
 function App() {
@@ -92,6 +93,15 @@ function App() {
           element={
             <ProtectedRoute>
               <UserManagement />
+            </ProtectedRoute>
+          }
+        />
+        {/* Agent Routes */}
+        <Route
+          path="/delivery-agent"
+          element={
+            <ProtectedRoute>
+              <DeliveryAgentDashboard />
             </ProtectedRoute>
           }
         />

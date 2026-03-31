@@ -1,0 +1,315 @@
+/* Checkout Page Styles */
+.checkout-page {
+  min-height: 100vh;
+  padding: var(--space-xl) 0;
+  background-color: var(--bg-secondary);
+}
+
+.checkout-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.checkout-header {
+  margin-bottom: var(--space-3xl);
+  text-align: center;
+}
+
+.checkout-header h1 {
+  margin-bottom: var(--space-lg);
+}
+
+/* Progress Indicator */
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-3xl);
+  position: relative;
+}
+
+.progress-steps::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--border-light);
+  z-index: 0;
+}
+
+.progress-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.progress-indicator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
+  transition: all var(--transition-base);
+}
+
+.progress-step.active .progress-indicator {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.progress-step.completed .progress-indicator {
+  background-color: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.progress-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+/* Main Layout */
+.checkout-content {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--space-xl);
+}
+
+/* Forms Section */
+.checkout-forms {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.form-section {
+  background-color: var(--bg-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+  animation: slideInUp var(--transition-base);
+}
+
+.form-section-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 2px solid var(--border-light);
+}
+
+/* Form Grid */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.form-row.full {
+  grid-template-columns: 1fr;
+}
+
+/* Address Form */
+.address-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Payment Methods */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  padding: var(--space-lg);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.payment-method-option:hover {
+  border-color: var(--color-primary);
+  background-color: var(--bg-secondary);
+}
+
+.payment-method-option.selected {
+  border-color: var(--color-primary);
+  background-color: rgba(255, 107, 53, 0.05);
+}
+
+.payment-method-option input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  margin-right: var(--space-lg);
+  cursor: pointer;
+}
+
+.payment-method-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.payment-method-name {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-xs);
+}
+
+.payment-method-desc {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+/* Special Instructions */
+.special-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.special-instructions textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Order Summary Sidebar */
+.order-summary {
+  height: fit-content;
+  position: sticky;
+  top: var(--space-lg);
+}
+
+.summary-card {
+  background-color: var(--bg-primary);
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-light);
+}
+
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.summary-item-name {
+  flex: 1;
+}
+
+.summary-item-qty {
+  color: var(--text-secondary);
+  margin: 0 var(--space-md);
+}
+
+.summary-item-price {
+  font-weight: var(--font-weight-semibold);
+}
+
+.summary-totals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.summary-final {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-lg);
+  border-top: 2px solid var(--border-light);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.summary-final .amount {
+  color: var(--color-primary);
+}
+
+.checkout-btn {
+  width: 100%;
+  margin-top: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .checkout-content {
+    grid-template-columns: 1fr;
+  }
+
+  .order-summary {
+    position: static;
+  }
+
+  .progress-steps {
+    margin-bottom: var(--space-xl);
+  }
+
+  .progress-label {
+    display: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: var(--space-lg) 0;
+  }
+
+  .form-section {
+    padding: var(--space-lg);
+  }
+
+  .progress-indicator {
+    width: 32px;
+    height: 32px;
+    font-size: var(--font-size-sm);
+  }
+
+  .payment-method-option {
+    padding: var(--space-md);
+  }
+
+  .payment-method-option input[type='radio'] {
+    margin-right: var(--space-md);
+  }
+}

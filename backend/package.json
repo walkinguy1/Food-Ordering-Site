@@ -1,0 +1,19 @@
+{
+  "name": "food-app-backend",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "services/*"
+  ],
+  "scripts": {
+    "start:auth": "npm start --workspace=services/auth-service",
+    "start:inventory": "npm start --workspace=services/inventory-service",
+    "start:order": "npm start --workspace=services/order-service",
+    "start:logistics": "npm start --workspace=services/logistics-service",
+    "start:payment": "npm start --workspace=services/payment-service",
+    "start:notification": "npm start --workspace=services/notification-service",
+    "start:analytics": "npm start --workspace=services/analytics-service",
+    "start:recommendations": "npm start --workspace=services/recommendation-service",
+    "start:gateway": "npm start --workspace=services/api-gateway"
+  }
+}

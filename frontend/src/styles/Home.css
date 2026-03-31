@@ -1,0 +1,206 @@
+/* Home Page Styles */
+.home-page {
+  min-height: 100vh;
+}
+
+/* Hero Banner */
+.hero-banner {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--text-inverse);
+  padding: var(--space-4xl) var(--space-lg);
+  margin-bottom: var(--space-3xl);
+  border-radius: var(--radius-2xl);
+}
+
+.hero-banner .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.hero-content h1 {
+  color: var(--text-inverse);
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--space-lg);
+  line-height: var(--line-height-tight);
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-cta {
+  margin-top: var(--space-lg);
+}
+
+.hero-image {
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  animation: bounce 3s infinite;
+}
+
+/* Categories Section */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-3xl) 0;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  gap: var(--space-md);
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  background-color: var(--bg-tertiary);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-icon {
+  font-size: 3em;
+  display: block;
+}
+
+.category-card h3 {
+  margin: 0;
+  text-align: center;
+  font-size: var(--font-size-md);
+}
+
+/* Restaurants Grid */
+.restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0;
+}
+
+.restaurant-card {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.restaurant-image {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.restaurant-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.restaurant-card:hover .restaurant-image img {
+  transform: scale(1.1);
+}
+
+.restaurant-image .badge {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+}
+
+.restaurant-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-light);
+  margin-top: var(--space-md);
+}
+
+.restaurant-footer .rating {
+  color: var(--color-warning);
+  font-weight: var(--font-weight-semibold);
+}
+
+.restaurant-footer .delivery {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* Recommendations Section */
+.recommendations-section {
+  margin: var(--space-3xl) 0;
+  padding: var(--space-xl);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+}
+
+/* Promo Banner */
+.promo-banner {
+  background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  color: var(--text-inverse);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  margin: var(--space-3xl) 0;
+}
+
+.promo-banner h2 {
+  color: var(--text-inverse);
+  margin-bottom: var(--space-lg);
+}
+
+.promo-banner p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-banner .container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .restaurants-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .hero-content h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero-content p {
+    font-size: var(--font-size-base);
+  }
+
+  .categories-grid,
+  .restaurants-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
