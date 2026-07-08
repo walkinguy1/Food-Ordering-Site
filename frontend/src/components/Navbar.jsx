@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../services/authService';
 import { useCart } from '../context/useCart';
+import { useTheme } from '../context/ThemeContext';
+import { Moon, Sun } from 'lucide-react';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -8,6 +10,7 @@ export default function Navbar() {
   const user = authService.getUser();
   const isAdmin = user?.role === 'admin';
   const { cart } = useCart();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   const cartCount = cart.items.reduce((sum, i) => sum + i.quantity, 0);
 
@@ -71,6 +74,13 @@ export default function Navbar() {
                 👤 {user?.full_name || user?.email}
                 {isAdmin && <span className="admin-badge">ADMIN</span>}
               </span>
+              <button 
+                onClick={toggleTheme} 
+                className="btn btn-secondary btn-sm"
+                title={isDarkMode ? 'Light mode' : 'Dark mode'}
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
               <button onClick={handleLogout} className="btn btn-danger btn-sm">
                 Logout
               </button>
@@ -83,6 +93,13 @@ export default function Navbar() {
               <Link to="/login" className="navbar-link">
                 Login
               </Link>
+              <button 
+                onClick={toggleTheme} 
+                className="btn btn-secondary btn-sm"
+                title={isDarkMode ? 'Light mode' : 'Dark mode'}
+              >
+                {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
               <Link to="/register" className="btn btn-primary btn-sm">
                 Sign Up
               </Link>
